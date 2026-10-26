@@ -290,6 +290,13 @@ such as `long`. `comp.saveFrameToPng(time, file)` returns before the file exists
 - An unknown font name raises no error: AE keeps the previous font or uses Times New Roman. Compare what you read back.
 - In ae_eval, `addProperty` invalidates references you already hold to sibling properties ("Object is invalid"). Add
   everything first, then fetch the properties again by path or matchName before setting them.
+- A text selector's Amount is `ADBE Text Range Advanced/ADBE Text Selector Max Amount`, not a direct child of the
+  selector (asking the selector for it returns null and the eval rolls back).
+- `setParentWithJump` keeps the child's values and reads them in the parent's space, so a parent null leaves its
+  children in place only when its Anchor Point equals its Position (both [960, 540], like CAM).
+- A track matte cannot be switched off over time. To reveal a layer inside a growing shape (glass growing into a
+  window), duplicate the layer, matte only the duplicate with the shape's silhouette, and cut to the unmatted original
+  on the frame the shape covers it completely.
 - `layers.addCamera` leaves the camera at [0, 0, −zoom] (an oblique view of the centre). `ae_add_layer {kind: "camera"}`
   corrects this since 2026-10-26; cameras made with ae_eval need their Position set to [centre x, centre y, −zoom].
 - Use the `ADBE Advanced 3d` renderer (Classic 3D, the default); `ADBE Standard 3d` rendered empty frames here

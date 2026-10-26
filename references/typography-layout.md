@@ -58,6 +58,17 @@ reserved for the final statement.
 Other moves that fit this language: a tracking settle (tracking from −60 to 0 with an arrival ease), a cascade with a
 small rise and a little blur (`ae_animate` preset `cascade`), a line drawing a baseline that the words then sit on.
 
+**Per-character blur rise (逐字模糊往上出現), for product-film headlines.** Built and approved in a launcher promo
+(PingFang TC 76–84 px). One animator "Rise In":
+- Properties: Position `[0, +0.5 em]`, Opacity 0, Blur 18.
+- Selector: shape Ramp Up, Start 0, End 45, Levels Max Ease 0 / Min Ease 80 (each character leaves fast and settles
+  long).
+- Offset keyed −45 → 100 over about 0.11–0.14 s per character with `[0.25, 0.1, 0.35, 1]`.
+
+The exit is a second animator "Rise Out" with Position `[0, −0.5 em]`, shape Ramp Down, Max/Min Ease 60/0, offset
+−40 → 100 in about 0.55 s with an accelerating ease, so the characters carry on upwards. Hold a fully revealed line
+at least about 1.2 s before it leaves.
+
 ## 4. Type in After Effects
 
 **Fonts on this PC.** AE 2023 has no font-list API, so set the PostScript name and read back the warning that
